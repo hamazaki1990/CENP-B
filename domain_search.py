@@ -48,37 +48,27 @@ def check_CENPBrev(inputf, inputfmt):
                     i += 1
 
 
-print("forward")
-
-search_CENPB = check_CENPB("GenData2015_cons.fa", "fasta")
-while True:
-    try:
-        found = next(search_CENPB)
-    except StopIteration:
-        break
-    else:
-        print(found)
-
-
-print("reverse")
-
-search_CENPBrev = check_CENPBrev("GenData2015_cons.fa", "fasta")
-while True:
-    try:
-        foundr = next(search_CENPBrev)
-    except StopIteration:
-        break
-    else:
-        print(foundr)
+def main():
+    inputf = "/Users/hamazaki/db/blast/GenData2015_cons.fa"
+    print("forward")
+    search_CENPB = check_CENPB(inputf, "fasta")
+    while True:
+        try:
+            found = next(search_CENPB)
+        except StopIteration:
+            break
+        else:
+            print(found)
+    print("reverse")
+    search_CENPBrev = check_CENPBrev(inputf, "fasta")
+    while True:
+        try:
+            foundr = next(search_CENPBrev)
+        except StopIteration:
+            break
+        else:
+            print(foundr)
 
 
- def testrev(seq1, seq2):
-    seqr = seq1[::-1]
-    if seqr[1:5] == seq2[1:5]:
-        return "True"
-
-
-seq1 = Seq.Seq("ATCGTTG")
-seq2 = Seq.Seq("ATTGCTA")
-
-print(testrev(seq1, seq2))
+if __name__ == '__main__':
+    main()
