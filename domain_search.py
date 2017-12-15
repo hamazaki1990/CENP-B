@@ -1,9 +1,12 @@
 from Bio import SeqIO
 from Bio import Seq
 
+CENPB = Seq.Seq("NTTCGNNNNANNCGGGN")
+CENPB_3CtoT = Seq.Seq("NTTTGNNNNANNCGGGN")
+CENPB_8GtoA = Seq.Seq("NTTCGNNNNANNCGAGN")
+
 
 def check_CENPB(inputf, inputfmt):
-    CENPB = Seq.Seq("NTTCGNNNNANNCGGGN")
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -25,7 +28,6 @@ def check_CENPB(inputf, inputfmt):
 
 
 def check_CENPBrev(inputf, inputfmt):
-    CENPB = Seq.Seq("NTTCGNNNNANNCGGGN")
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -48,7 +50,6 @@ def check_CENPBrev(inputf, inputfmt):
 
 
 def check_CENPBrevcom(inputf, inputfmt):
-    CENPB = Seq.Seq("NTTCGNNNNANNCGGGN")
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -71,7 +72,6 @@ def check_CENPBrevcom(inputf, inputfmt):
 
 
 def check_CENPBcom(inputf, inputfmt):
-    CENPB = Seq.Seq("NTTCGNNNNANNCGGGN")
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -94,8 +94,8 @@ def check_CENPBcom(inputf, inputfmt):
 
 
 def main():
-    inputf = "DXZ_HOR_2000.fa"
-    print("forward")
+    inputf = "DXZ1_HOR_2000.fa"
+    print(inputf, "forward")
     search_CENPB = check_CENPB(inputf, "fasta")
     while True:
         try:
@@ -103,7 +103,7 @@ def main():
         except StopIteration:
             break
         else:
-            print(found[1] % 2054, found[2])
+            print(found[0], found[1], found[2])
     print("reverse_complement")
     search_CENPBrevcon = check_CENPBrevcom(inputf, "fasta")
     while True:
