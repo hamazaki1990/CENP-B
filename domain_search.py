@@ -19,7 +19,9 @@ def check_CENPB(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif (seq[1:5] == CENPB[1:5] and
+                elif seq[3] == CENPB[3]:
+                    i += 1
+                elif (seq[1:2] == CENPB[1:2] and seq[4:5] == CENPB[4:5] and
                       seq[9] == CENPB[9] and seq[12:16] == CENPB[12:16]):
                     yield [seq_record.id, i, seq]
                     i += 1
@@ -63,7 +65,9 @@ def check_CENPBrevcom(inputf, inputfmt):
                 seqrc = seq.reverse_complement()
                 if len(seq) < 17:
                     break
-                elif (seqrc[1:5] == CENPB[1:5] and
+                elif seqrc[3] == CENPB[3]:
+                    i += 1
+                elif (seqrc[1:2] == CENPB[1:2] and seqrc[4:5] == CENPB[4:5] and
                       seqrc[9] == CENPB[9] and seqrc[12:16] == CENPB[12:16]):
                     yield [seq_record.id, i, seq]
                     i += 1
