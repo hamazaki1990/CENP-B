@@ -12,14 +12,14 @@ def motifs_count(inputf):
             break
         else:
             if not instances:
-                instances.append([seq_record])
+                instances.append([seq_record.seq])
             else:
                 for i in instances:
                     if len(seq_record) == len(i[0]):
-                        i.append(seq_record)
+                        i.append(seq_record.seq)
                         break
                     else:
-                        instances.append([seq_record])
+                        instances.append([seq_record.seq])
     print(instances)
     m = motifs.create(instances[0])
     print(m)
