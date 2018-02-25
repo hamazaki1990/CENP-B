@@ -1,10 +1,10 @@
 from Bio import SeqIO
 from Bio import Seq
 
-pJalpha = Seq.Seq("NNNNNNNGPuAAAAGGNN")
+pJa = Seq.Seq("NNNNNNNGPAAAAGGNN")
 
 
-def check_pJalpha(inputf, inputfmt):
+def check_pJa(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -17,15 +17,15 @@ def check_pJalpha(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif (seq[7] == pJalpha[7] and (seq[8] == "A" or seq[8] == "G")
-                      and seq[9:15] == pJalpha[9:15]):
+                elif (seq[7] == pJa[7] and (seq[8] == "A" or seq[8] == "G")
+                      and seq[9:15] == pJa[9:15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpharev(inputf, inputfmt):
+def check_pJa_1G(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -36,62 +36,19 @@ def check_pJalpharev(inputf, inputfmt):
             i = 0
             while True:
                 seq = seq_record.seq[i:i+17]
-                seqr = seq[::-1]
                 if len(seq) < 17:
                     break
-                elif (seqr[1:5] == pJalpha[1:5] and
-                      seqr[9] == pJalpha[9] and seqr[12:16] == pJalpha[12:16]):
-                    yield [seq_record.id, i, seq]
+                elif seq[7] == pJa[7]:
                     i += 1
-                else:
-                    i += 1
-
-
-def check_pJalpharevcom(inputf, inputfmt):
-    rec_iter = SeqIO.parse(inputf, inputfmt)
-    while True:
-        try:
-            seq_record = next(rec_iter)
-        except StopIteration:
-            break
-        else:
-            i = 0
-            while True:
-                seq = seq_record.seq[i:i+17]
-                seqrc = seq.reverse_complement()
-                if len(seq) < 17:
-                    break
-                elif (seqrc[1:5] == pJalpha[1:5] and seqrc[9] == pJalpha[9] and
-                      seqrc[12:16] == pJalpha[12:16]):
+                elif ((seq[8] == "A" or seq[8] == "G")
+                      and seq[9:15] == pJa[9:15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalphacom(inputf, inputfmt):
-    rec_iter = SeqIO.parse(inputf, inputfmt)
-    while True:
-        try:
-            seq_record = next(rec_iter)
-        except StopIteration:
-            break
-        else:
-            i = 0
-            while True:
-                seq = seq_record.seq[i:i+17]
-                seqc = seq.complement()
-                if len(seq) < 17:
-                    break
-                elif (seqc[1:5] == pJalpha[1:5] and
-                      seqc[9] == pJalpha[9] and seqc[12:16] == pJalpha[12:16]):
-                    yield [seq_record.id, i, seq]
-                    i += 1
-                else:
-                    i += 1
-
-
-def check_pJalpha_1T(inputf, inputfmt):
+def check_pJa_2Pu(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -104,17 +61,16 @@ def check_pJalpha_1T(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[1] == pJalpha[1]:
+                elif seq[8] == "A" or seq[8] == "G":
                     i += 1
-                elif (seq[2:5] == pJalpha[2:5] and seq[9] == pJalpha[9] and
-                      seq[12:16] == pJalpha[12:16]):
+                elif (seq[7] == pJa[7] and seq[9:15] == pJa[9:15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpha_2T(inputf, inputfmt):
+def check_pJa_3A(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -127,17 +83,17 @@ def check_pJalpha_2T(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[2] == pJalpha[2]:
+                elif seq[9] == pJa[9]:
                     i += 1
-                elif (seq[1] == pJalpha[1] and seq[3:5] == pJalpha[3:5] and
-                      seq[9] == pJalpha[9] and seq[12:16] == pJalpha[12:16]):
+                elif (seq[7] == pJa[7] and (seq[8] == "A" or seq[8] == "G")
+                      and seq[10:15] == pJa[10:15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpha_3C(inputf, inputfmt):
+def check_pJa_4A(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -150,17 +106,17 @@ def check_pJalpha_3C(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[3] == pJalpha[3]:
+                elif seq[10] == pJa[10]:
                     i += 1
-                elif (seq[1:3] == pJalpha[1:3] and seq[4] == pJalpha[4] and
-                      seq[9] == pJalpha[9] and seq[12:16] == pJalpha[12:16]):
+                elif (seq[7] == pJa[7] and (seq[8] == "A" or seq[8] == "G")
+                      and seq[9] == pJa[9] and seq[11:15] == pJa[11:15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpha_4G(inputf, inputfmt):
+def check_pJa_5A(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -173,17 +129,39 @@ def check_pJalpha_4G(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[4] == pJalpha[4]:
+                elif seq[11] == pJa[11]:
                     i += 1
-                elif (seq[1:4] == pJalpha[1:4] and
-                      seq[9] == pJalpha[9] and seq[12:16] == pJalpha[12:16]):
+                elif (seq[7] == pJa[7] and (seq[8] == "A" or seq[8] == "G")
+                      and seq[9:11] == pJa[9:11] and seq[12:15] == pJa[12:15]):
+                    i += 1
+                else:
+                    i += 1
+
+
+def check_pJa_6C(inputf, inputfmt):
+    rec_iter = SeqIO.parse(inputf, inputfmt)
+    while True:
+        try:
+            seq_record = next(rec_iter)
+        except StopIteration:
+            break
+        else:
+            i = 0
+            while True:
+                seq = seq_record.seq[i:i+17]
+                if len(seq) < 17:
+                    break
+                elif seq[12] == pJa[12]:
+                    i += 1
+                elif (seq[1:5] == pJa[1:5] and seq[9] == pJa[9] and
+                      seq[13:16] == pJa[13:16]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpha_5A(inputf, inputfmt):
+def check_pJa_7G(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -196,16 +174,17 @@ def check_pJalpha_5A(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[9] == pJalpha[9]:
+                elif seq[13] == pJa[13]:
                     i += 1
-                elif seq[1:5] == pJalpha[1:5] and seq[12:16] == pJalpha[12:16]:
+                elif (seq[1:5] == pJa[1:5] and seq[9] == pJa[9] and
+                      seq[12] == pJa[12] and seq[14:16] == pJa[14:16]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpha_6C(inputf, inputfmt):
+def check_pJa_8G(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -218,17 +197,17 @@ def check_pJalpha_6C(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[12] == pJalpha[12]:
+                elif seq[14] == pJa[14]:
                     i += 1
-                elif (seq[1:5] == pJalpha[1:5] and seq[9] == pJalpha[9] and
-                      seq[13:16] == pJalpha[13:16]):
+                elif (seq[1:5] == pJa[1:5] and seq[9] == pJa[9] and
+                      seq[12:14] == pJa[12:14] and seq[15] == pJa[15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
                     i += 1
 
 
-def check_pJalpha_7G(inputf, inputfmt):
+def check_pJa_9G(inputf, inputfmt):
     rec_iter = SeqIO.parse(inputf, inputfmt)
     while True:
         try:
@@ -241,56 +220,10 @@ def check_pJalpha_7G(inputf, inputfmt):
                 seq = seq_record.seq[i:i+17]
                 if len(seq) < 17:
                     break
-                elif seq[13] == pJalpha[13]:
+                elif seq[15] == pJa[15]:
                     i += 1
-                elif (seq[1:5] == pJalpha[1:5] and seq[9] == pJalpha[9] and
-                      seq[12] == pJalpha[12] and seq[14:16] == pJalpha[14:16]):
-                    yield [seq_record.id, i, seq, seq_record.description]
-                    i += 1
-                else:
-                    i += 1
-
-
-def check_pJalpha_8G(inputf, inputfmt):
-    rec_iter = SeqIO.parse(inputf, inputfmt)
-    while True:
-        try:
-            seq_record = next(rec_iter)
-        except StopIteration:
-            break
-        else:
-            i = 0
-            while True:
-                seq = seq_record.seq[i:i+17]
-                if len(seq) < 17:
-                    break
-                elif seq[14] == pJalpha[14]:
-                    i += 1
-                elif (seq[1:5] == pJalpha[1:5] and seq[9] == pJalpha[9] and
-                      seq[12:14] == pJalpha[12:14] and seq[15] == pJalpha[15]):
-                    yield [seq_record.id, i, seq, seq_record.description]
-                    i += 1
-                else:
-                    i += 1
-
-
-def check_pJalpha_9G(inputf, inputfmt):
-    rec_iter = SeqIO.parse(inputf, inputfmt)
-    while True:
-        try:
-            seq_record = next(rec_iter)
-        except StopIteration:
-            break
-        else:
-            i = 0
-            while True:
-                seq = seq_record.seq[i:i+17]
-                if len(seq) < 17:
-                    break
-                elif seq[15] == pJalpha[15]:
-                    i += 1
-                elif (seq[1:5] == pJalpha[1:5] and seq[9] == pJalpha[9] and
-                      seq[12:15] == pJalpha[12:15]):
+                elif (seq[1:5] == pJa[1:5] and seq[9] == pJa[9] and
+                      seq[12:15] == pJa[12:15]):
                     yield [seq_record.id, i, seq, seq_record.description]
                     i += 1
                 else:
@@ -299,92 +232,92 @@ def check_pJalpha_9G(inputf, inputfmt):
 
 def main():
     inputf = "/users/hamazaki/db/blast/human_ASs_2017.fa"
-    print(inputf, "pJalpha intact")
-    search_pJalpha = check_pJalpha(inputf, "fasta")
+    print(inputf, "pJa intact")
+    search_pJa = check_pJa(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha)
+            found = next(search_pJa)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_1")
-    search_pJalpha_1T = check_pJalpha_1T(inputf, "fasta")
+    print("pJa_1")
+    search_pJa_1T = check_pJa_1T(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_1T)
+            found = next(search_pJa_1T)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_2T")
-    search_pJalpha_2T = check_pJalpha_2T(inputf, "fasta")
+    print("pJa_2T")
+    search_pJa_2T = check_pJa_2T(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_2T)
+            found = next(search_pJa_2T)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_3C")
-    search_pJalpha_3C = check_pJalpha_3C(inputf, "fasta")
+    print("pJa_3C")
+    search_pJa_3C = check_pJa_3C(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_3C)
+            found = next(search_pJa_3C)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_4G")
-    search_pJalpha_4G = check_pJalpha_4G(inputf, "fasta")
+    print("pJa_4G")
+    search_pJa_4G = check_pJa_4G(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_4G)
+            found = next(search_pJa_4G)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_5A")
-    search_pJalpha_5A = check_pJalpha_5A(inputf, "fasta")
+    print("pJa_5A")
+    search_pJa_5A = check_pJa_5A(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_5A)
+            found = next(search_pJa_5A)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_6C")
-    search_pJalpha_6C = check_pJalpha_6C(inputf, "fasta")
+    print("pJa_6C")
+    search_pJa_6C = check_pJa_6C(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_6C)
+            found = next(search_pJa_6C)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_7G")
-    search_pJalpha_7G = check_pJalpha_7G(inputf, "fasta")
+    print("pJa_7G")
+    search_pJa_7G = check_pJa_7G(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_7G)
+            found = next(search_pJa_7G)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_8G")
-    search_pJalpha_8G = check_pJalpha_8G(inputf, "fasta")
+    print("pJa_8G")
+    search_pJa_8G = check_pJa_8G(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_8G)
+            found = next(search_pJa_8G)
         except StopIteration:
             break
         else:
             print(found[3], found[1], found[2])
-    print("pJalpha_9G")
-    search_pJalpha_9G = check_pJalpha_9G(inputf, "fasta")
+    print("pJa_9G")
+    search_pJa_9G = check_pJa_9G(inputf, "fasta")
     while True:
         try:
-            found = next(search_pJalpha_9G)
+            found = next(search_pJa_9G)
         except StopIteration:
             break
         else:
