@@ -1,11 +1,11 @@
 import csv
-from domain_search import check_CENPB, check_CENPBrevcom
+from domain_CENPB import check_CENPB, check_CENPBrevcom
 
 
-for i in range(1, 13):
-    inputf = "DXZ1_monomer"+str(i)+".fa"
-    out_f = "CENPBf_1TtoX_DXZ1_monomer"+str(i)+".tsv"
-    out_r = "CENPBr_1TtoX_DXZ1_monomer"+str(i)+".tsv"
+for i in range(1, 5):
+    inputf = "/users/hamazaki/db/blast/D1Z5_peri_5end_"+str(i)+".fa"
+    out_f = "CENPBf_9GtoX_D1Z5_peri"+str(i)+".tsv"
+    out_r = "CENPBr_9GtoX_D1Z5_peri"+str(i)+".tsv"
 
     print("forward"+str(i))
 
